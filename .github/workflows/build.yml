@@ -61,6 +61,26 @@ jobs:
             - name: Test shared library
               run: ./build-shared/TestAll
 
+    build-ubuntu-zig:
+        name: Linux, zig
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: mlugg/setup-zig@v2
+            with:
+              version: 0.15.1
+
+          - name: Build static library and priorities
+            run: zig build -Dbuild_examples=true -Dshared=false -Dtask_priorities=4
+          - name: Test static library
+            run: ./zig-out/bin/TestAll
+
+          - name: Build shared library
+            run: zig build -Dbuild_examples=true -Dshared=true
+          - name: Test shared library
+            run: ./zig-out/bin/TestAll
+
+
     build-macos-cocoa-clang:
         name: Cocoa (macOS, Clang)
         runs-on: macos-latest
@@ -111,3 +131,22 @@ jobs:
               run: cmake --build build-shared --parallel
             - name: Test shared library
               run: .\build-shared\Debug\TestAll.exe
+
+    build-windows-win32-zig:
+        name: Win32 (Windows, zig)
+        runs-on: windows-latest
+        steps:
+        - uses: actions/checkout@v3
+        - uses: mlugg/setup-zig@v2
+          with:
+            version: 0.15.1
+
+        - name: Build static library and priorities
+          run: zig build -Dbuild_examples=true -Dshared=false -Dtask_priorities=4
+        - name: Test static library
+          run: .\zig-out\bin\TestAll.exe
+
+        - name: Build shared library
+          run: zig build -Dbuild_examples=true -Dshared=true
+        - name: Test shared library
+          run: .\zig-out\bin\TestAll.exe
