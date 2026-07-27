@@ -106,7 +106,7 @@ jobs:
 
     build-windows-win32-vs2022:
         name: Win32 (Windows, VS2022)
-        runs-on: windows-latest
+        runs-on: windows-2022
         env:
             CFLAGS: /WX
             CXXFLAGS: /WX
