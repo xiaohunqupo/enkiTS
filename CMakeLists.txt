@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project( enkiTS 
+project( enkiTS
          VERSION "1.11"
          DESCRIPTION "A C and C++ task scheduler for creating parallel programs"
          HOMEPAGE_URL "https://github.com/dougbinks/enkiTS"
@@ -85,7 +85,9 @@ if( ENKITS_INSTALL )
     install(
         TARGETS enkiTS
         EXPORT enkiTSConfig
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
     install(FILES ${ENKITS_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/enkiTS)
     install(
         EXPORT enkiTSConfig
